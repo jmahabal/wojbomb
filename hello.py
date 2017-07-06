@@ -12,7 +12,7 @@ import requests
 import json
 
 def predict(tweet_text):
-	# Load our model and vectorizer
+    # Load our model and vectorizer
     clf = joblib.load('model.pkl')
     vectorizer = joblib.load('vectorizer.pkl')
 
@@ -22,15 +22,25 @@ def predict(tweet_text):
     # Return the prediction
     return {'prediction': prediction}
 
+def getWeapon(prediction):
+    if prediction < 100:
+        return "punch"
+    elif prediction < 500:
+        return "bullet"
+    elif prediction < 2000:
+        return "grenade"
+    elif prediction < 5000:
+        return "bomb"
+    else:
+        return "nuke"
+
 print "starting stream"
 
 with open('secrets.json') as data_file:    
     secrets = json.load(data_file)
-    for key in secrets:
-        key = secrets[key]
 
-auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-auth.set_access_token(access_key, access_secret)
+auth = tweepy.OAuthHandler(secrets["consumer_key"], secrets["consumer_secret"])
+auth.set_access_token(secrets["access_key"], secrets["access_secret"])
 
 api = tweepy.API(auth)
 
@@ -39,9 +49,17 @@ public_tweets = api.home_timeline()
 class MyStreamListener(tweepy.StreamListener):
 
     def on_status(self, status):
-        # payload = {"tweet": status.text}
-        prediction = predict(status.text)
-        print status.text, prediction
+
+        status_id = status.id
+        screenname = status.user.screen_name
+
+        if hasattr(status, 'retweeted_status') and screenname == "wojespn":
+            prediction = predict(status.text)["prediction"]
+            print status.text, prediction
+            print status_id, screenname
+
+            # retweet with the tweet_id
+            api.update_status("#woj"+ getWeapon(prediction) + " (" + prediction + ") " + " https://twitter.com/" + screenname + "/status/" + str(status_id))
 
     def on_error(self, status_code):
         if status_code == 420:
@@ -52,4 +70,6 @@ myStreamListener = MyStreamListener()
 myStream = tweepy.Stream(auth = api.auth, listener=myStreamListener)
 
 # wojespn: 50323173
-myStream.filter(follow=['575930104']) # metaphor a minute
+# metaphoraminute: 575930104
+# lelebronbot: 868212681014038528
+myStream.filter(follow=['50323173'])
