@@ -23,6 +23,7 @@ def predict(tweet_text):
     return {'prediction': prediction}
 
 def getWeapon(prediction):
+    prediction = float(prediction)
     if prediction < 100:
         return "punch"
     elif prediction < 500:
@@ -30,7 +31,7 @@ def getWeapon(prediction):
     elif prediction < 2000:
         return "grenade"
     elif prediction < 5000:
-        return "bomb"
+        return "bomb 💣"
     else:
         return "nuke"
 
@@ -52,14 +53,19 @@ class MyStreamListener(tweepy.StreamListener):
 
         status_id = status.id
         screenname = status.user.screen_name
+        print status_id, screenname
 
-        if hasattr(status, 'retweeted_status') and screenname == "wojespn":
-            prediction = predict(status.text)["prediction"]
-            print status.text, prediction
-            print status_id, screenname
+        if screenname == "wojespn":
+            print "from WOJ!"
+            if not hasattr(status, 'retweeted_status'):
+                prediction = predict(status.text)["prediction"]
+                print status.text, prediction
+                print status_id, screenname
+                print "#woj" + getWeapon(prediction) + " (" + str(prediction) + ") " + " https://twitter.com/" + screenname + "/status/" + str(status_id)
+                print "----------"
 
-            # retweet with the tweet_id
-            api.update_status("#woj"+ getWeapon(prediction) + " (" + prediction + ") " + " https://twitter.com/" + screenname + "/status/" + str(status_id))
+                # retweet with the tweet_id
+                api.update_status("#woj"+ getWeapon(prediction) + " (" + str(int(prediction)) + " predicted retweets) " + " https://twitter.com/" + screenname + "/status/" + str(status_id))
 
     def on_error(self, status_code):
         if status_code == 420:
