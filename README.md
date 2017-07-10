@@ -24,3 +24,6 @@ Most of the future work for this bot will be in the machine learning part, I sti
 2. Use some scoring function for accuracy measurement
 3. Try different models besides Random Forests
 4. Try uni-grams, or quad-grams, or fiddle with the Vectorizer some other way
+5. Get more data, there's a few scripts out there to access all of a user's tweets, not just the API-limited 3,000
+
+I've hosted this on a DigitalOcean droplet.

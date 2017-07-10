@@ -1,9 +1,9 @@
-from flask import Flask, jsonify, request
-app = Flask(__name__)
+# from flask import Flask, jsonify, request
+# app = Flask(__name__)
 
-@app.route('/')
-def hello_world():
-    return 'Hello, World!'
+# @app.route('/')
+# def hello_world():
+#     return 'Hello, World!'
 
 from sklearn.externals import joblib
 import pandas as pd
@@ -25,13 +25,13 @@ def predict(tweet_text):
 def getWeapon(prediction):
     prediction = float(prediction)
     if prediction < 100:
-        return "punch"
+        return "drop"
     elif prediction < 500:
-        return "bullet"
+        return "pellet"
     elif prediction < 2000:
         return "grenade"
     elif prediction < 5000:
-        return "bomb 💣"
+        return "bomb"
     else:
         return "nuke"
 
@@ -65,7 +65,7 @@ class MyStreamListener(tweepy.StreamListener):
                 print "----------"
 
                 # retweet with the tweet_id
-                api.update_status("#woj"+ getWeapon(prediction) + " (" + str(int(prediction)) + " predicted retweets) " + " https://twitter.com/" + screenname + "/status/" + str(status_id))
+                api.update_status("#woj"+ getWeapon(prediction) + " (" + str(int(prediction)) + " expected retweets) " + " https://twitter.com/" + screenname + "/status/" + str(status_id))
 
     def on_error(self, status_code):
         if status_code == 420:
