@@ -26,4 +26,10 @@ Most of the future work for this bot will be in the machine learning part, I sti
 4. Try uni-grams, or quad-grams, or fiddle with the Vectorizer some other way
 5. Get more data, there's a few scripts out there to access all of a user's tweets, not just the API-limited 3,000
 
+Update (Jul. 12):
+1. Scraped posts from Reddit's `/r/NBA` subreddit but the number of posts with `Wojnarowski` was only about 1,000 posts, fewer than the 3,000 Woj tweets.
+2. Experimented with a few other models, so far Ridge Regression seems to be performing the best anecdotally, but I haven't switched out the model yet.
+3. My laptop freezes when attempting to run scikit's GridSearch, so I've put off experimenting with different models, as the current model works okay enough as a proof-of-concept.
+4. There hasn't been a Woj-bomb yet, which is unfortunate because I want to retweet that tweet ASAP.
+
 I've hosted this on a DigitalOcean droplet.
