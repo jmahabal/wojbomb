@@ -13,7 +13,7 @@ Context
 How it Works
 ============
 
-The machine learning element is at the moment very, very naive. It takes in the past 3,000 or so tweets from Woj, filters it to only those that aren't re-tweets, and then runs a bi- and tri-gram CountVectorizer across the tweets. I then build a Random Forest Regression model off of this tweet word matrix, with my target column the number of retweets the tweet received (so the model biased against very recent tweets, which may not have had enough time to reach their potential). 
+The machine learning element is at the moment very, very naive. It takes in the past 3,000 or so tweets from Woj, filters it to only those that aren't re-tweets, and then runs a bi- and tri-gram CountVectorizer across the tweets. I then build a Random Forest Regression model off of this tweet word matrix, with my target column the number of retweets the tweet received (so the model is biased against very recent tweets, which may not have had enough time to reach their potential). 
 
 I pickle this model, and then run each new tweet through it. To grab new tweets, I use Tweepy for access to the Twitter Stream, and filter the stream by original Woj tweets only.
 
