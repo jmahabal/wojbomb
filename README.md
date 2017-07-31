@@ -1,5 +1,7 @@
-[Wojbombs](https://www.twitter.com/wojbooms)
+[Wojbombs](https://www.twitter.com/wojbombdetector)
 ========
+
+Visit the bot `@WojbombDetector`.
 
 <a href="url"><img src="preview.png" height="300"></a>
 
