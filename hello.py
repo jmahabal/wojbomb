@@ -55,6 +55,8 @@ else:
 auth = tweepy.OAuthHandler(secrets["consumer_key"], secrets["consumer_secret"])
 auth.set_access_token(secrets["access_key"], secrets["access_secret"])
 
+print "auth", auth
+
 api = tweepy.API(auth)
 
 public_tweets = api.home_timeline()
