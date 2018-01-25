@@ -10,6 +10,7 @@ import pandas as pd
 import tweepy
 import requests
 import json
+import os
 
 def predict(tweet_text):
     # Load our model and vectorizer
@@ -37,8 +38,15 @@ def getWeapon(prediction):
 
 print "starting stream"
 
-with open('secrets.json') as data_file:    
-    secrets = json.load(data_file)
+if os.environ["ENV"] == "prod":
+    secrets = {}
+    secrets["consumer_key"] = os.environ["consumer_key"]
+    secrets["consumer_secret"] = os.environ["consumer_secret"]
+    secrets["access_key"] = os.environ["access_key"]
+    secrets["access_secret"] = os.environ["access_secret"]
+else:
+    with open('secrets.json') as data_file:    
+        secrets = json.load(data_file)
 
 auth = tweepy.OAuthHandler(secrets["consumer_key"], secrets["consumer_secret"])
 auth.set_access_token(secrets["access_key"], secrets["access_secret"])
