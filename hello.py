@@ -52,6 +52,8 @@ else:
 #     with open('secrets.json') as data_file:    
 #         secrets = json.load(data_file)
 
+print (auth)
+
 auth = tweepy.OAuthHandler(secrets["consumer_key"], secrets["consumer_secret"])
 auth.set_access_token(secrets["access_key"], secrets["access_secret"])
 
