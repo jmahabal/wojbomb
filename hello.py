@@ -38,19 +38,19 @@ def getWeapon(prediction):
 
 print "starting stream"
 
-if "ENV" in os.environ:
-    if os.environ["ENV"] == "prod":
-        secrets = {}
-        secrets["consumer_key"] = os.environ["consumer_key"]
-        secrets["consumer_secret"] = os.environ["consumer_secret"]
-        secrets["access_key"] = os.environ["access_key"]
-        secrets["access_secret"] = os.environ["access_secret"]
-    else:
-        with open('secrets.json') as data_file:    
-            secrets = json.load(data_file)
+# if "ENV" in os.environ:
+if os.environ["ENV"] == "prod":
+    secrets = {}
+    secrets["consumer_key"] = os.environ["consumer_key"]
+    secrets["consumer_secret"] = os.environ["consumer_secret"]
+    secrets["access_key"] = os.environ["access_key"]
+    secrets["access_secret"] = os.environ["access_secret"]
 else:
     with open('secrets.json') as data_file:    
         secrets = json.load(data_file)
+# else:
+#     with open('secrets.json') as data_file:    
+#         secrets = json.load(data_file)
 
 auth = tweepy.OAuthHandler(secrets["consumer_key"], secrets["consumer_secret"])
 auth.set_access_token(secrets["access_key"], secrets["access_secret"])
