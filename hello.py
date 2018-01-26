@@ -90,4 +90,4 @@ myStream = tweepy.Stream(auth = api.auth, listener=myStreamListener)
 # wojespn: 50323173
 # metaphoraminute: 575930104
 # lelebronbot: 868212681014038528
-myStream.filter(follow=['575930104'])
+myStream.filter(follow=['50323173'])
