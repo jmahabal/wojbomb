@@ -80,9 +80,11 @@ class MyStreamListener(tweepy.StreamListener):
                 api.update_status("#woj"+ getWeapon(prediction) + " (" + str(int(prediction)) + " expected retweets) " + " https://twitter.com/" + screenname + "/status/" + str(status_id))
 
     def on_error(self, status_code):
+        print (self);
         if status_code == 420:
             # returning False in on_data disconnects the stream
             return False
+
 
 myStreamListener = MyStreamListener()
 myStream = tweepy.Stream(auth = api.auth, listener=myStreamListener)
