@@ -36,7 +36,7 @@ def getWeapon(prediction):
     else:
         return "nuke"
 
-print "starting stream"
+print ("starting stream")
 
 if "ENV" in os.environ:
     if os.environ["ENV"] == "prod":
@@ -65,7 +65,7 @@ class MyStreamListener(tweepy.StreamListener):
 
         status_id = status.id
         screenname = status.user.screen_name
-        print status_id, screenname
+        print (status_id, screenname)
 
         if screenname == "wojespn":
             print "from WOJ!"
