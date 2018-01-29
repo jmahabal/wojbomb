@@ -68,13 +68,13 @@ class MyStreamListener(tweepy.StreamListener):
         print (status_id, screenname)
 
         if screenname == "wojespn":
-            print "from WOJ!"
+            print ("from WOJ!")
             if not hasattr(status, 'retweeted_status'):
                 prediction = predict(status.text)["prediction"]
-                print status.text, prediction
-                print status_id, screenname
-                print "#woj" + getWeapon(prediction) + " (" + str(prediction) + ") " + " https://twitter.com/" + screenname + "/status/" + str(status_id)
-                print "----------"
+                print (status.text, prediction)
+                print (status_id, screenname)
+                print ("#woj" + getWeapon(prediction) + " (" + str(prediction) + ") " + " https://twitter.com/" + screenname + "/status/" + str(status_id))
+                print ("----------")
 
                 # retweet with the tweet_id
                 api.update_status("#woj"+ getWeapon(prediction) + " (" + str(int(prediction)) + " expected retweets) " + " https://twitter.com/" + screenname + "/status/" + str(status_id))
