@@ -4,7 +4,7 @@
 Visit the bot `@WojbombDetector`.
 
 <a href="url"><img src="preview.png" height="300"></a>
-<a href="url"><img src="mobile.png" height="300"></a>
+<a href="url"><img src="mobile.jpg" height="300"></a>
 
 This is a Twitter bot that re-tweets each original Woj tweet and classifies it according to how likely it thinks the news will shake-up the NBA.
 
